@@ -14,8 +14,6 @@ using System.Text;
 
 namespace GlobalRenov.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
     public class AuthenticationController : ControllerBase
     {
 
@@ -123,12 +121,9 @@ namespace GlobalRenov.Controllers
 
                     var token = GenerateToken(_jwtKey, claims);
 
-                    // Ajouter les rôles à la réponse JSON
-
+                    // rétourner la réponse en JSON
                     var response = new
                     {
-                        User = user,
-                        Roles = user.UserRoles.Select(ur => ur.Role).ToList(),
                         Token = token
                     };
 
