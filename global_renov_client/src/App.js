@@ -1,16 +1,19 @@
 import './App.css';
-import { createBrowserRouter, Link, Outlet, RouterProvider } from 'react-router-dom';
+
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import InterventionWithAxios from './component/interaction-api/InterventionWithAxios';
+import InterventionWithFetchAsyncAwait from './component/interaction-api/InterventionWithFetchAsyncAwait';
+import InterventionWithFetchThen from './component/interaction-api/InterventionWithFetchThen';
+import NavBar from './component/NavBar';
 import SingleIntervention from './component/SingleIntervention';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <div>
-      <nav>
-        <Link to={'/'}> Accueil </Link>
-        <Link to={'/intervention'}> Intervention </Link>
-        <Link to={'/intervention/242'}> Detail intervention </Link>
-      </nav>
+      <NavBar />
+      <h1>Page d'Accueil</h1>
       <main>
         <Outlet />
       </main>
@@ -29,9 +32,21 @@ const router = createBrowserRouter([
             element: <div>Intervention</div>
           },
           {
-        path: ':id',
-        element: <SingleIntervention />
-      }
+            path: 'fetch_then',
+            element: <InterventionWithFetchThen />
+          },
+          {
+            path: 'fetch_async',
+            element: <InterventionWithFetchAsyncAwait />
+          },
+          {
+            path: 'axios',
+            element: <InterventionWithAxios />
+          },
+          {
+            path: ':id',
+            element: <SingleIntervention />
+          }
         ]
       },
     ],
